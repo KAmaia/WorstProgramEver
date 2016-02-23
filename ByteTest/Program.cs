@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace ByteTest {
+﻿namespace ByteTest {
 	class Program {
 
 		private static int max = 255; //default to 255
