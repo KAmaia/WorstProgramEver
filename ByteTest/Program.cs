@@ -16,7 +16,6 @@ namespace ByteTest {
 				ParseApplyArgs( args );
 			}
 		
-
 			ByteCounter bc = new ByteCounter(max);
 			bc.Run( );
 		}
