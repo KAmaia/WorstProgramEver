@@ -12,6 +12,7 @@ namespace ByteTest {
 		public ConsoleColor ZerosBackgroundColor { get; }
 		public ConsoleColor ZerosForegroundColor { get; }
 
+		//All color pairs should be inverse for zeros and ones.
 		public ColorPair(ConsoleColor onesBgColor, ConsoleColor onesFgColor ) {
 			OnesBackgroundColor = onesBgColor;
 			OnesForgroundColor = onesFgColor;

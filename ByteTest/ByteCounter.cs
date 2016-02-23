@@ -23,6 +23,7 @@ namespace ByteTest {
 			this.max = max;
 			InitColorPairs( );
 		}
+
 		/// <summary>
 		/// Initialize our color pairs.
 		/// </summary>
@@ -32,8 +33,8 @@ namespace ByteTest {
 				new ColorPair(ConsoleColor.DarkGreen, ConsoleColor.DarkRed),
 				new ColorPair(ConsoleColor.DarkGray, ConsoleColor.DarkMagenta)
 			};
+			//start currentColorPair as a real color pair.
 			currentColorPair = colorPairs[0];
-
 		}
 
 		/// <summary>
@@ -148,6 +149,10 @@ namespace ByteTest {
 
 		}
 
+		/// <summary>
+		/// Cycles currentColorPair
+		/// </summary>
+		/// <param name="forward">Whether to Cycle Forward or Backward</param>
 		private void CycleColors( bool forward ) {
 			if ( forward ) {
 				if ( colorIndex == colorPairs.Length - 1 ) {
@@ -166,9 +171,7 @@ namespace ByteTest {
 				}
 			}
 			currentColorPair = colorPairs[colorIndex];
-
 		}
-
 
 		/// <summary>
 		/// Toggles Paused Status.
