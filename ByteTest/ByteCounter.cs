@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace ByteTest {
 	class ByteCounter {
+
 		private int max;
 		private bool running = false;
 		private bool paused = false;
+
 		public ByteCounter( int max ) {
 			this.max = max;
 		}
-
 
 		internal void Run( ) {
 			running = true;
