@@ -27,19 +27,23 @@ namespace ByteTest {
 					}
 				}
 				if ( Console.KeyAvailable ) {
-					ConsoleKeyInfo key = Console.ReadKey();
-					switch ( key.Key ) {
-						case ConsoleKey.Escape:
-							PauseResume();
-							break;
-						case ConsoleKey.Q:
-							running = false;
-							break; 
-					}
+					HandleInput( Console.ReadKey( ) );
 				}
 			}
 		}
 
+		private void HandleInput( ConsoleKeyInfo key ) {
+			switch ( key.Key ) {
+				case ConsoleKey.Escape:
+					PauseResume( );
+					break;
+				case ConsoleKey.Q:
+					running = false;
+					break;
+				default:
+					break;
+			}
+		}
 
 		private bool[ ] CreateBitArray( int incoming ) {
 			BitArray b = new BitArray(new int[] { incoming } );

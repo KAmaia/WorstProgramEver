@@ -9,12 +9,23 @@ using System.Threading.Tasks;
 namespace ByteTest {
 	class Program {
 
+		private static int max = 255; //default to 255
+
 		static void Main( string[ ] args ) {
-			ByteCounter bc = new ByteCounter(10);
-			bc.Run( );
-			
-		}
+			if(args.Length > 0 ) {
+				ParseApplyArgs( args );
+			}
 		
+
+			ByteCounter bc = new ByteCounter(max);
+			bc.Run( );
+		}
+
+		private static void ParseApplyArgs( string[ ] args ) {
+			//for now, the only arg should be an int that's greater than 0 in args[0]
+			int.TryParse( args[0], out max );
+
+		}
 	}
 
 }
