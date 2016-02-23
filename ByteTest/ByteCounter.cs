@@ -39,7 +39,7 @@ namespace ByteTest {
 
 		/// <summary>
 		/// MainLoop:  
-		/// fucking counts.  Seriously, that's all this thing does, 
+		/// Fucking counts.  Seriously, that's all this thing does, 
 		/// is count up in binary, then back down in binary, and output it to 
 		/// the fucking screen.  Seriously?  Why did I even write this app?
 		/// 
@@ -65,9 +65,8 @@ namespace ByteTest {
 						i++;
 					}
 
-					WriteBoolArray( CreateBitArray( i ) );
+					SetConsoleColorPairAndWriteToConsole( CreateBitArray( i ) );
 				}
-
 				if ( Console.KeyAvailable ) {
 					HandleInput( Console.ReadKey( true ) );
 				}
@@ -130,7 +129,7 @@ namespace ByteTest {
 		/// Writes a bool array to screen using console colors.
 		/// </summary>
 		/// <param name="incoming">The bit array to print.</param>
-		private void WriteBoolArray( bool[ ] incoming ) {
+		private void SetConsoleColorPairAndWriteToConsole( bool[ ] incoming ) {
 			foreach ( var asf in incoming ) {
 				if ( asf == true ) {
 					Console.BackgroundColor = currentColorPair.OnesBackgroundColor;
