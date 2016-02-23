@@ -38,7 +38,12 @@ namespace ByteTest {
 		}
 
 		/// <summary>
-		/// MainLoop
+		/// MainLoop:  
+		/// fucking counts.  Seriously, that's all this thing does, 
+		/// is count up in binary, then back down in binary, and output it to 
+		/// the fucking screen.  Seriously?  Why did I even write this app?
+		/// 
+		/// Gawd.
 		/// </summary>
 		internal void Run( ) {
 			running = true;
@@ -76,7 +81,7 @@ namespace ByteTest {
 		private void HandleInput( ConsoleKeyInfo key ) {
 			switch ( key.Key ) {
 				case ConsoleKey.Escape:
-					PauseResume( );
+					TogglePaused( );
 					break;
 				case ConsoleKey.Q:
 					running = false;
@@ -85,21 +90,14 @@ namespace ByteTest {
 					ToggleDecrement( );
 					break;
 				case ConsoleKey.UpArrow:
-					CycleColors( true );
+					SetCurrentColorPair( true );
 					break;
 				case ConsoleKey.DownArrow:
-					CycleColors( false );
+					SetCurrentColorPair( false );
 					break;
 				default:
 					break;
 			}
-		}
-
-		/// <summary>
-		/// Toggles whether the loop is incremental or decremental.
-		/// </summary>
-		private void ToggleDecrement( ) {
-			decrement = !decrement;
 		}
 
 		/// <summary>
@@ -108,8 +106,11 @@ namespace ByteTest {
 		/// <param name="incoming">The integer to create a bit array out of.</param>
 		/// <returns></returns>
 		private bool[ ] CreateBitArray( int incoming ) {
+			//int[] is required by BitArray's constructor.
 			BitArray b = new BitArray(new int[] { incoming } );
-			bool[] booleanbits = new bool[b.Count];
+			//create a bool array to copy b into
+			bool[ ] booleanbits = new bool[b.Count];
+			//and perform the copy
 			b.CopyTo( booleanbits, 0 );
 			Array.Reverse( booleanbits );
 			bool[] newBits = new bool[booleanbits.Count( )];
@@ -145,16 +146,15 @@ namespace ByteTest {
 			Console.BackgroundColor = ConsoleColor.Black;
 			Console.ForegroundColor = ConsoleColor.White;
 			Console.WriteLine( "" );
-
-
 		}
 
 		/// <summary>
-		/// Cycles currentColorPair
+		/// Cycles through the initiated color pairs either forward or backward
+		/// based on fwd.
 		/// </summary>
-		/// <param name="forward">Whether to Cycle Forward or Backward</param>
-		private void CycleColors( bool forward ) {
-			if ( forward ) {
+		/// <param name="fwd">Whether to Cycle Forward or Backward</param>
+		private void SetCurrentColorPair( bool fwd ) {
+			if ( fwd ) {
 				if ( colorIndex == colorPairs.Length - 1 ) {
 					colorIndex = 0;
 				}
@@ -162,7 +162,7 @@ namespace ByteTest {
 					colorIndex++;
 				}
 			}
-			else if ( !forward ) {
+			else if ( !fwd ) {
 				if ( colorIndex == 0 ) {
 					colorIndex = colorPairs.Length - 1;
 				}
@@ -173,10 +173,18 @@ namespace ByteTest {
 			currentColorPair = colorPairs[colorIndex];
 		}
 
+
+		/// <summary>
+		/// Toggles whether the loop is incremental or decremental.
+		/// </summary>
+		private void ToggleDecrement( ) {
+			decrement = !decrement;
+		}
+
 		/// <summary>
 		/// Toggles Paused Status.
 		/// </summary>
-		public void PauseResume( ) {
+		public void TogglePaused( ) {
 			paused = !paused;
 		}
 	}
